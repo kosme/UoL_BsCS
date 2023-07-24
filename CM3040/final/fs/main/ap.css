@@ -1,0 +1,56 @@
+.hidden {
+    display: none;
+}
+
+span.icon {
+    position: relative;
+    left: 5px;
+    top: 5px;
+    width: 25px;
+    height: 25px;
+    display: inline-block;
+    cursor: pointer;
+}
+
+span#allow-visible-btn {
+    background: url("img/eye.png");
+}
+
+span#allow-visible-btn.active {
+    filter: invert(65%);
+}
+
+span#allow-visible-btn.inactive {
+    filter: none;
+}
+
+span#refresh-net-btn {
+    background: url("img/refresh.png");
+    transition: transform 0.5s, filter 0.5s;
+}
+
+span#refresh-net-btn:active {
+    transform: rotate(360deg);
+    filter: opacity(0%);
+}
+
+.network-widget {
+    height: 35px;
+    margin: 5px;
+    display: grid;
+    grid-template-columns: 7em 1px 60%;
+}
+
+.network-widget>* {
+    border-radius: 5px;
+    font-size: 12pt;
+}
+
+.network-widget>label {
+    position: relative;
+    top: 5pt;
+}
+
+.network-widget>*:last-child {
+    padding-left: 35px;
+}

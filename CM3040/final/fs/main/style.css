@@ -1,0 +1,201 @@
+.hidden {
+    display: none;
+}
+
+nav a {
+    display: inline-block;
+    width: 100%;
+    text-decoration: none;
+    color: #000000;
+    text-align: center;
+    font-size: 14pt;
+}
+
+nav li {
+    list-style-type: none;
+    display: inline-block;
+    padding: 10px;
+    border-radius: 10px;
+    border: 2px solid lightgray;
+    background-color: lightblue;
+    cursor: pointer;
+    margin: 10px;
+    width: 70%;
+}
+
+nav li:hover {
+    width: 75%;
+    height: 40%;
+}
+
+nav li.active {
+    background-color: gray;
+}
+
+#navbar ul {
+    display: grid;
+    grid-template-columns: 8em 8em;
+}
+
+#dashboard,
+.inner-display {
+    display: grid;
+}
+
+@media only screen and (max-width: 800px) {
+    #dashboard {
+        grid-template-columns: 100%;
+    }
+
+    .inner-element::before {
+        padding-top: 30px;
+    }
+
+    .inner-element {
+        margin: 15px 5px 15px;
+    }
+
+    .dashboard-element {
+        margin: 2% 5% 0;
+    }
+
+    #grid-header>.inner-element {
+        text-align: center;
+    }
+}
+
+@media only screen and (min-width: 801px) {
+    #dashboard {
+        grid-template-columns: 50% 50%;
+    }
+
+    #grid-header {
+        grid-column: 1 / span 2;
+        margin: 2% 5% 0;
+    }
+
+    .inner-element::before {
+        padding: 30px 5px 0 5px;
+    }
+
+    .inner-element {
+        margin: 15px;
+    }
+
+    .inner-display {
+        margin: 5% 10% 0;
+    }
+
+}
+
+.dashboard-element-name {
+    grid-column: 1 / span 2;
+    margin: 10px 10px 0;
+}
+
+.inner-display {
+    grid-template-columns: 50% 50%;
+}
+
+#grid-header {
+    grid-template-columns: 25% 25% 25% 25%;
+}
+
+.dashboard-element {
+    display: grid;
+    border: 2px solid black;
+    border-radius: 1em;
+    min-height: 50px;
+}
+
+.inner-element {
+    border: 2px solid black;
+    height: fit-content;
+    border-radius: 12px;
+    font-size: larger;
+}
+
+.inner-display>.inner-element:nth-child(4),
+.inner-display>.inner-element:nth-child(5) {
+    margin-top: 0;
+}
+
+.inner-element::before {
+    vertical-align: middle;
+}
+
+.humidity::before {
+    content: url("img/drop.png");
+}
+
+.humidity::after {
+    content: " %";
+}
+
+.temp::before {
+    content: url("img/thermo.png");
+}
+
+.temp::after {
+    content: " °C";
+}
+
+.co2::before {
+    content: url("img/co2.png");
+}
+
+.co2::after {
+    content: " ppm";
+}
+
+.waqi::before {
+    content: url("img/bldg.png");
+}
+
+.house::before {
+    content: url("img/house.png");
+}
+
+.room::before,
+.voc::before {
+    content: url("img/room.png");
+}
+
+.voc::after {
+    content: " ppb";
+}
+
+.deleteButton::before {
+    content: url("img/clear.png");
+    cursor: pointer;
+}
+
+/* AQI colors table */
+
+.good {
+    background-color: #00e400;
+}
+
+.moderate {
+    background-color: #ffff00;
+}
+
+.notbad {
+    background-color: #ff7e00;
+}
+
+.bad {
+    background-color: #ff0000;
+}
+
+.verybad {
+    background-color: #8f3f97;
+    color: #ffffff;
+    font-weight: 700;
+}
+
+.hazard {
+    background-color: #7e0023;
+    color: #ffffff;
+    font-weight: 700;
+}

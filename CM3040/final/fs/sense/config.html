@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Pollution monitor</title>
+</head>
+
+<body>
+    <h1>%ALIAS% sensor configuration</h1>
+    <nav id="navbar">
+        <ul>
+            <li><a href="/">Main</a></li>
+            <li class="active"><a href="config">Config</a></li>
+        </ul>
+    </nav>
+    <div id="alias-container">
+        <form action="/alias" method="POST">
+            <label for="alias">Device name:</label>
+            <input type="text" name="alias" id="alias" required minlength="1" value="%ALIAS%">
+            <input type="text" class="hidden" id="alias-old" value="%ALIAS%" readonly>
+            <button type="submit" disabled>Submit</button>
+        </form>
+    </div>
+</body>
+<script src="config.js"></script>
+
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="ap.css">
+    <title>Pollution monitor initial configuration</title>
+</head>
+
+<body>
+    <h1>Pollution monitor configuration</h1>
+    <p>Select a network to connect</p>
+    <form id="network-form" action="/" method="post">
+        <div class="network-widget" id="network-name-widget">
+            <label for="network-select">Network</label>
+            <span class="icon" id="refresh-net-btn"></span>
+            <select name="network" id="network-select" required>
+                %NETWORKS%
+            </select>
+        </div>
+        <div class="network-widget" id="network-password-widget">
+            <label for="password-hidden">Password</label>
+            <span class="icon inactive" id="allow-visible-btn"></span>
+            <input type="password" class="password password-hidden" name="password" id="password-hidden" maxlength="63">
+        </div>
+    </form>
+    <input id="submit-form" type="submit" value="Submit">
+</body>
+<script src="ap.js"></script>
+
+</html>
