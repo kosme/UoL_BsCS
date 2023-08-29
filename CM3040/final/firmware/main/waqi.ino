@@ -19,9 +19,11 @@ int getAirQualityReading(void) {
     WiFiClient client;
     HTTPClient http;
 
+    // Replace TOKEN with your own token
+    // To get a token, register at http://aqicn.org/data-platform/register/
     if (http.begin(client,
                    F("http://api.waqi.info/feed/here/"
-                     "?token=b5d184a1c6e4d63c73a61c2059ee4cb95be8853a"))) {
+                     "?token=TOKEN"))) {
       // Serial.println("[HTTP] GET...");
       // start connection and send HTTP header
       int httpCode = http.GET();
