@@ -47,37 +47,32 @@ function upload {
 }
 
 function filesystem {
-    if [ -e $SKETCH_FOLDER/data/ ]; then
-        MKFS=$(find ~/.ardui* -type f -name mklittlefs | head -n1)
-        ESPTOOL=$(find ~/.ardui* -type f -name upload.py | head -n1)
-        ESPOTA=$(find ~/.ardui* -type f -name espota.py | head -n1)
-        
-        SOURCE_FOLDER=$(basename $SKETCH_FOLDER)
-        DATADIR=$SKETCH_FOLDER/data
-        FS_IMG=/tmp/arduino-build-$SKETCH_NAME/$SKETCH_NAME.mklittlefs.bin
-        PYTHON=$(find ~/.ardui* -type f -name python3 | head -n1)
+    DATADIR=$SKETCH_FOLDER/data
 
-        # Clean destination folder
-        rm $DATADIR/*.*
-        rm -r $DATADIR/*
+    MKFS=$(find ~/.ardui* -type f -name mklittlefs | head -n1)
+    ESPTOOL=$(find ~/.ardui* -type f -name upload.py | head -n1)
+    ESPOTA=$(find ~/.ardui* -type f -name espota.py | head -n1)
+    
+    FS_IMG=/tmp/arduino-build-$SKETCH_NAME/$SKETCH_NAME.mklittlefs.bin
+    PYTHON=$(find ~/.ardui* -type f -name python3 | head -n1)
 
-        # Minify and copy files for device file system
-        $(pwd)/minifyFS.sh $SOURCE_FOLDER
-        # Create file system image destination folder if required
-        mkdir -p /tmp/arduino-build-$SKETCH_NAME
+    # Minify and copy files for device file system
+    $(pwd)/minifyFS.sh fs/$SKETCH_NAME $DATADIR
+    # Create file system image destination folder if required
+    mkdir -p /tmp/arduino-build-$SKETCH_NAME
 
-        echo Building file system
-        $MKFS -c $DATADIR -p 256 -b 8192 -s $FS_SIZE $FS_IMG
-        echo 
-        echo Uploading file system
-        if [ $IP ]; then
-            echo IP
-            $PYTHON $ESPOTA -i $IP -s -f $FS_IMG
-        else
-            echo Serial
-            $PYTHON $ESPTOOL --chip esp8266 --port $PORT --baud 115200 write_flash $FS_ADDR $FS_IMG
-        fi
+    echo Building file system
+    $MKFS -c $DATADIR -p 256 -b 8192 -s $FS_SIZE $FS_IMG
+    echo 
+    echo Uploading file system
+    if [ $IP ]; then
+        echo IP
+        $PYTHON $ESPOTA -i $IP -s -f $FS_IMG
+    else
+        echo Serial
+        $PYTHON $ESPTOOL --chip esp8266 --port $PORT --baud 115200 write_flash $FS_ADDR $FS_IMG
     fi
+    echo \n
 }
 
 if [ "$#" -eq 0 ]; then
