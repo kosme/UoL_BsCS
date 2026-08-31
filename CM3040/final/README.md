@@ -12,6 +12,10 @@
 
 ## Requirements and dependencies
 
+### External dependencies for using `build.sh`
+
+The build script depends on the Arduino CLI executable (`arduino-cli`). It is assumed that is located in the Downloads folder. Modify line 33 if required.
+
 ### Node.js dependencies for minification
 
 ```

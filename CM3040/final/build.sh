@@ -82,7 +82,12 @@ function filesystem {
 
 if [ "$#" -eq 0 ]; then
     echo Sketch folder is required
-    echo -e "Example:\n\tbuild.sh sketch_folder"
+    echo -e "Example:\n\tbuild.sh path_to_SKETCH_FOLDER [OPERATION] [IP]"
+    echo -e "\tOPERATION options:"
+    echo -e "\t\tcompile \tCompiles the sketch in the folder"
+    echo -e "\t\tflash   \tCompiles and uploads the sketch in the folder. If IP is provided, it tries to perform an OTA upload, otherwise it defaults to /dev/ttyUSB0."
+    echo -e "\t\tfs      \tMinifies and tries to upload a filesystem image from fs/SKETCH_FOLDER. If IP is provided, it tries to perform an OTA upload, otherwise it defaults to /dev/ttyUSB0."
+    echo -e "\tIf no operation is provided, all of them are performed."
     exit 1
 else
     SKETCH_FOLDER=$(realpath $1)
