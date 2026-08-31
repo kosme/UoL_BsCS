@@ -57,6 +57,7 @@ String scanAvailableNetworks(bool generateHTML = false) {
     }
     return options;
   }
+  return String("");
 }
 
 void configureAP(void) {

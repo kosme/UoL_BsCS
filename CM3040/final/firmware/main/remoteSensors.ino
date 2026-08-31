@@ -54,7 +54,7 @@ bool readNodesFile(void) {
   JsonArray nodesArr = doc.as<JsonArray>();
   uint8_t position = 0;
   for (JsonVariant v : nodesArr) {
-    strlcpy(nodeNames[position], v.as<char *>(), sizeof(nodeNames[position]));
+    strlcpy(nodeNames[position], v.as<const char *>(), sizeof(nodeNames[position]));
     position++;
   }
   return true;

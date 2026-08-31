@@ -33,6 +33,7 @@ String processor(const String &var) {
   if (var == "MAINDATA") {
     return showSystemWideData();
   }
+  return String("");
 }
 
 // Generate HTML structure to display the general status of the system. This
