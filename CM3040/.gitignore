@@ -1,0 +1,2 @@
+# Ignore minfied filesystem folders
+final/firmware/*/data/
