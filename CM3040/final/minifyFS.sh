@@ -15,7 +15,7 @@ function minify {
 
     for file in $(ls -1 $INPUT_FOLDER/*.html)
     do
-        html-minifier --collapse-whitespace --remove-comments --remove-optional-tags --remove-redundant-attributes --remove-script-type-attributes --remove-tag-whitespace --use-short-doctype $file -o firmware/$folder/data/$(basename $file)
+        html-minifier --collapse-whitespace --remove-comments --remove-optional-tags --remove-redundant-attributes --remove-script-type-attributes --remove-tag-whitespace --use-short-doctype $file -o $OUTPUT_FOLDER/$(basename $file)
         echo "$(basename $file) minified"
     done
 
@@ -37,8 +37,10 @@ function minify {
         echo "$(basename $file) minified"
     done
 
-    cp -r $INPUT_FOLDER/img $OUTPUT_FOLDER/.
-    echo "Images copied"
+    if [ -e $INPUT_FOLDER/img ]; then
+        cp -r $INPUT_FOLDER/img $OUTPUT_FOLDER/.
+        echo "Images copied"
+    fi
 }
 
 if [ "$#" -le 1 ]; then
