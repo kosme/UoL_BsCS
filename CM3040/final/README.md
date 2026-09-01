@@ -19,7 +19,7 @@ The build script depends on the Arduino CLI executable (`arduino-cli`). It is as
 ### Node.js dependencies for minification
 
 ```
-$ npm install -g html-minifier
+$ npm install -g html-minifier-next
 $ npm install -g cssnano-cli
 $ npm install -g uglify-js
 ```

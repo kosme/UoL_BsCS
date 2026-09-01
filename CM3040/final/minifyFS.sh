@@ -15,7 +15,7 @@ function minify {
 
     for file in $(ls -1 $INPUT_FOLDER/*.html)
     do
-        html-minifier --collapse-whitespace --remove-comments --remove-optional-tags --remove-redundant-attributes --remove-script-type-attributes --remove-tag-whitespace --use-short-doctype $file -o $OUTPUT_FOLDER/$(basename $file)
+        html-minifier-next --collapse-whitespace --remove-comments --remove-optional-tags --remove-redundant-attributes --remove-default-type-attributes --remove-tag-whitespace --use-short-doctype $file -o $OUTPUT_FOLDER/$(basename $file)
         echo "$(basename $file) minified"
     done
 
