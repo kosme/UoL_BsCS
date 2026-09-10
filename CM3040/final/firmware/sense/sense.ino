@@ -1,20 +1,20 @@
 /* Required external libraries and platform versions
 Used library             Version Source
-Adafruit_BusIO           1.13.2  Arduino Library Manager
-Adafruit_CCS811_Library  1.1.1   Arduino Library Manager
-Adafruit_Unified_Sensor  1.1.6   Arduino Library Manager
-ArduinoJson              6.19.4  Arduino Library Manager
+Adafruit_BusIO           1.17.4  Arduino Library Manager
+Adafruit_CCS811_Library  1.1.3   Arduino Library Manager
+Adafruit_Unified_Sensor  1.1.15  Arduino Library Manager
+ArduinoJson              7.4.2   Arduino Library Manager
 ArduinoOTA               1.0     Included with ESP8266 platform files
-DHT_sensor_library       1.4.4   Arduino Library Manager
+DHT_sensor_library       1.4.7   Arduino Library Manager
 ESP8266HTTPClient        1.2     Included with ESP8266 platform files
 ESP8266mDNS              1.2     Included with ESP8266 platform files
 ESP8266WiFi              1.0     Included with ESP8266 platform files
-ESPAsyncTCP-master       1.2.2   https://github.com/me-no-dev/ESPAsyncTCP
-ESPAsyncWebServer-master 1.2.3   https://github.com/me-no-dev/ESPAsyncWebServer
+ESPAsyncTCP              2.0.0   Arduino Library Manager
+ESPAsyncWebServer        3.12.0  Arduino Library Manager
 Hash                     1.0     Included with ESP8266 platform files
 LittleFS                 0.1.0   Included with ESP8266 platform files
 SPI                      1.0     Included with ESP8266 platform files
-TaskScheduler            3.6.0   Arduino Library Manager
+TaskScheduler            4.0.8   Arduino Library Manager
 Wire                     1.0     Included with ESP8266 platform files
 
 Used platform   Version

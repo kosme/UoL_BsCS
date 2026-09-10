@@ -17,4 +17,5 @@ String processor(const String& var) {
   if (var == "V0C") {
     return String(VOC);
   }
+  return("");
 }
