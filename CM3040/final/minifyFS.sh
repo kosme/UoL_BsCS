@@ -6,18 +6,30 @@ function minify {
 
     # Create output folder if necessary
     if ! [ -e $OUTPUT_FOLDER ]; then
-        mkdir $OUTPUT_FOLDER
+        mkdir -p $OUTPUT_FOLDER"/"$INCLUDE_PATH
     else
         # Clean destination folder if it exists
-        rm $OUTPUT_FOLDER/*.*
-        rm -r $OUTPUT_FOLDER/*
+        rm -r $OUTPUT_FOLDER
+        mkdir -p $OUTPUT_FOLDER"/"$INCLUDE_PATH
     fi
 
     for file in $(ls -1 $INPUT_FOLDER/*.html)
     do
-        html-minifier-next --collapse-whitespace --remove-comments --remove-optional-tags --remove-redundant-attributes --remove-default-type-attributes --remove-tag-whitespace --use-short-doctype $file -o $OUTPUT_FOLDER/$(basename $file)
+        html-minifier-next --collapse-whitespace --remove-comments --remove-optional-tags \
+        --remove-redundant-attributes --remove-default-type-attributes --remove-tag-whitespace \
+        --use-short-doctype $file -o $OUTPUT_FOLDER/$(basename $file)
         echo "$(basename $file) minified"
     done
+
+    for file in $(ls -1 $INPUT_FOLDER/*.json)
+    do
+        $(python3 -c 'import json, sys;json.dump(json.load(sys.stdin), sys.stdout)'  < $file >  $OUTPUT_FOLDER/$(basename $file))
+        echo "$(basename $file) minified"
+    done
+
+    # Moving references into assets folder
+    INPUT_FOLDER=$INPUT_FOLDER"/"$INCLUDE_PATH
+    OUTPUT_FOLDER=$OUTPUT_FOLDER"/"$INCLUDE_PATH
 
     for file in $(ls -1 $INPUT_FOLDER/*.css)
     do
@@ -31,29 +43,25 @@ function minify {
         echo "$(basename $file) minified"
     done
 
-    for file in $(ls -1 $INPUT_FOLDER/*.json)
-    do
-        $(python3 -c 'import json, sys;json.dump(json.load(sys.stdin), sys.stdout)'  < $file >  $OUTPUT_FOLDER/$(basename $file))
-        echo "$(basename $file) minified"
-    done
-
     if [ -e $INPUT_FOLDER/img ]; then
         cp -r $INPUT_FOLDER/img $OUTPUT_FOLDER/.
         echo "Images copied"
     fi
 }
 
-if [ "$#" -le 1 ]; then
+if [ "$#" -le 2 ]; then
     # Hardcoded values for independent use on this project
     for folder in main sense
     do
         INPUT_FOLDER=fs/$folder
         OUTPUT_FOLDER=firmware/$folder/data
+        INCLUDE_PATH="assets"
         minify
     done
 else
     # Prepare global definitions
     INPUT_FOLDER=$(realpath $1)
     OUTPUT_FOLDER=$(realpath $2)
+    INCLUDE_PATH=$(basename $3)
     minify
 fi

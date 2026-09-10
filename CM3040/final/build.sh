@@ -62,7 +62,7 @@ function filesystem {
     FS_IMG=/tmp/arduino-build-$SKETCH_NAME/$SKETCH_NAME.mklittlefs.bin
 
     # Minify and copy files for device file system
-    $(pwd)/minifyFS.sh fs/$SKETCH_NAME $DATADIR
+    $(pwd)/minifyFS.sh fs/$SKETCH_NAME $DATADIR assets
     # Create file system image destination folder if required
     mkdir -p /tmp/arduino-build-$SKETCH_NAME
 
