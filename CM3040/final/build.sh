@@ -49,12 +49,13 @@ function upload {
 function filesystem {
     DATADIR=$SKETCH_FOLDER/data
 
-    MKFS=$(find ~/.ardui* -type f -name mklittlefs | head -n1)
-    ESPTOOL=$(find ~/.ardui* -type f -name upload.py | head -n1)
-    ESPOTA=$(find ~/.ardui* -type f -name espota.py | head -n1)
+    # Ensure the correct versions of the tools are used
+    MKFS=$(find ~/.arduino*/packages/esp8266 -type f -name mklittlefs | head -n1)
+    ESPTOOL=$(find ~/.arduino*/packages/esp8266 -type f -name upload.py | head -n1)
+    ESPOTA=$(find ~/.arduino*/packages/esp8266 -type f -name espota.py | head -n1)
+    PYTHON=$(find ~/.arduino*/packages/esp8266 -type f -name python3 | head -n1)
     
     FS_IMG=/tmp/arduino-build-$SKETCH_NAME/$SKETCH_NAME.mklittlefs.bin
-    PYTHON=$(find ~/.ardui* -type f -name python3 | head -n1)
 
     # Minify and copy files for device file system
     $(pwd)/minifyFS.sh fs/$SKETCH_NAME $DATADIR
