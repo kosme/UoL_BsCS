@@ -11,6 +11,7 @@ FS_MB=2
 # Sizes for LittleFS
 # # Should be 1024000, 2072576, or  3121152 (1MB, 2MB, or 3MB)
 FS_BASE_ADDRESS=0x3FA000 # spiffs_end definition
+BLOCK_SIZE=8192 # spiffs_blocksize definition
 ####################################################
 # EESZ definitios also come from boards.txt
 if [ $FS_MB -eq 1 ]; then
@@ -66,7 +67,7 @@ function filesystem {
     mkdir -p /tmp/arduino-build-$SKETCH_NAME
 
     echo Building file system
-    $MKFS -c $DATADIR -p 256 -b 8192 -s $FS_SIZE $FS_IMG
+    $MKFS -c $DATADIR -p 256 -b $BLOCK_SIZE -s $FS_SIZE $FS_IMG
     echo 
     echo Uploading file system
     if [ $IP ]; then
