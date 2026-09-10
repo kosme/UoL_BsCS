@@ -4,9 +4,21 @@ document.addEventListener('DOMContentLoaded', function () {
 }, false);
 
 function displayAQIColors() {
-    // house, co2, waqi, room
-    for (const element of document.getElementsByClassName("house")) {
-        applyAQIColor(element);
+    for (const element of document.getElementsByClassName("voc")) {
+        let value = parseInt(element.innerText);
+        if (isNaN(value) == false) {
+            if (value == 0) {
+                element.classList.add("good");
+            } else if (value <= 3) {
+                element.classList.add("moderate");
+            } else if (value <= 25) {
+                element.classList.add("notbad");
+            } else {
+                element.classList.add("bad");
+            }
+        // } else {
+        //     console.log(element);
+        }
     }
     for (const element of document.getElementsByClassName("co2")) {
         let value = parseInt(element.innerText);
@@ -24,30 +36,8 @@ function displayAQIColors() {
             } else {
                 element.classList.add("hazard");
             }
-        } else {
-            console.log(element);
-        }
-    }
-    for (const element of document.getElementsByClassName("waqi")) {
-        applyAQIColor(element);
-    }
-    for (const element of document.getElementsByClassName("room")) {
-        applyAQIColor(element);
-    }
-    for (const element of document.getElementsByClassName("voc")) {
-        let value = parseInt(element.innerText);
-        if (isNaN(value) == false) {
-            if (value == 0) {
-                element.classList.add("good");
-            } else if (value <= 3) {
-                element.classList.add("moderate");
-            } else if (value <= 25) {
-                element.classList.add("notbad");
-            } else {
-                element.classList.add("bad");
-            }
-        } else {
-            console.log(element);
+        // } else {
+        //     console.log(element);
         }
     }
 }
@@ -68,7 +58,7 @@ function applyAQIColor(element) {
         } else {
             element.classList.add("hazard");
         }
-    } else {
-        console.log(element);
+    // } else {
+    //     console.log(element);
     }
 }

@@ -73,18 +73,8 @@ void configureAP(void) {
   // First scan usually fails to detect anything
   scanAvailableNetworks();
 
-  // Route to load ap.css file
-  server.on("/ap.css", HTTP_GET, [](AsyncWebServerRequest* request) {
-    request->send(LittleFS, "/ap.css", "text/css");
-  });
-
-  // Route to load script.js file
-  server.on("/ap.js", HTTP_GET, [](AsyncWebServerRequest* request) {
-    request->send(LittleFS, "/ap.js", "application/javascript");
-  });
-
-  // Serve images
-  server.serveStatic("/img/", LittleFS, "/img/");
+  // Serve assets (images, js, and css)
+  server.serveStatic("/assets/", LittleFS, "/assets/");
 
   server.on("/", HTTP_GET, [](AsyncWebServerRequest* request) {
     request->send(LittleFS, "/ap.html", String(), false, processor);

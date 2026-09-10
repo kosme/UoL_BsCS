@@ -8,23 +8,8 @@
 
 // Configure endpoints for serving the dashboard and interacting with it
 void configureStation(void) {
-  // Serve images
-  server.serveStatic("/img/", LittleFS, "/img/");
-
-  // Route to load style.css file
-  server.on("/style.css", HTTP_GET, [](AsyncWebServerRequest* request) {
-    request->send(LittleFS, "/style.css", "text/css");
-  });
-
-  // Route to load script.js file
-  server.on("/script.js", HTTP_GET, [](AsyncWebServerRequest* request) {
-    request->send(LittleFS, "/script.js", "application/javascript");
-  });
-
-  // Route to load config.js file
-  server.on("/config.js", HTTP_GET, [](AsyncWebServerRequest* request) {
-    request->send(LittleFS, "/config.js", "application/javascript");
-  });
+  // Serve assets (images, js, and css)
+  server.serveStatic("/assets/", LittleFS, "/assets/");
 
   server.on("/", HTTP_GET, [](AsyncWebServerRequest* request) {
     request->send(LittleFS, "/index.html", String(), false, processor);
