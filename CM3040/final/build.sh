@@ -2,29 +2,32 @@
 FS_MB=2
 
 ######### File system constants ##################
+# Values taken from boards.txt in the esp8266 package hardware folder
+# AS OF VERSION 2.7.1 OF THE ESP8266 CORE, SPIFFS IS DEPRECATED.
+# ANY INFORMATION REGARDING SIZE AND BASE ADDRESS SHOULD BE 
+# CONSIDERED UNRELIABLE AND OUTDATED
 # Sizes for SPIFFS
 # # Should be 1028096,  2076672, or  3125248 (1MB, 2MB, or 3MB)
 # Sizes for LittleFS
 # # Should be 1024000, 2072576, or  3121152 (1MB, 2MB, or 3MB)
-# # Should be 0x300000 for 1MB, 0x200000 for 2MB, or 0x100000 for 3MB
-# FS_ADDR=0x200000
+FS_BASE_ADDRESS=0x3FA000 # spiffs_end definition
 ####################################################
+# EESZ definitios also come from boards.txt
 if [ $FS_MB -eq 1 ]; then
     EESZ=4M1M
-    FS_SIZE=1024000
-    FS_ADDR=0x300000
+    FS_ADDR=0x300000 # spiffs_start definition
 elif [ $FS_MB -eq 2 ]; then
     EESZ=4M2M
-    FS_SIZE=2072576
-    FS_ADDR=0x200000
+    FS_ADDR=0x200000 # spiffs_start definition
 elif [ $FS_MB -eq 3 ]; then
     EESZ=4M3M
-    FS_SIZE=3121152
-    FS_ADDR=0x100000
+    FS_ADDR=0x100000 # spiffs_start definition
 else
     echo "Incorrect file system size"
     exit 1
 fi
+
+FS_SIZE=$((FS_BASE_ADDRESS - FS_ADDR))
 
 BOARD=esp8266:esp8266:nodemcuv2:xtal=80,vt=flash,exception=disabled,stacksmash=disabled,ssl=all,mmu=3232,non32xfer=fast,eesz=$EESZ,led=2,ip=lm2f,dbg=Disabled,lvl=None____,wipe=none,baud=115200
 
